@@ -63,6 +63,72 @@ The Gibson L-00 is a classic small-body acoustic shape, historically associated 
 | ![Martin Parlor](media_library/pictures/martin_parlor.png)<br>**Martin Parlor** | Parlor / small body | Compact-body reference with quick response, focused midrange, intimate projection, and clear transient behavior. Useful for studying fast attack and reduced low-frequency bloom. |
 | ![Gibson L-00](media_library/pictures/gibson_l00.png)<br>**Gibson L-00** | Small-body blues guitar | Compact vintage-style reference with focused, woody, punchy response. Useful for studying small-body midrange character and dry acoustic articulation. |
 
+## 2.2 Guitar Structure and Acoustic Components
+
+An acoustic guitar is not a single resonator, but a coupled mechanical-acoustic system. The final sound is produced by the interaction of many components: strings, saddle, bridge, soundboard, bracing, back, sides, soundhole, internal air cavity, neck, and the player’s excitation technique. Each component has an individual function, but none of them acts independently. The guitar’s tone emerges from the way these parts exchange energy over time.
+
+This is one reason acoustic guitar modeling is difficult. A pickup signal may observe one local part of the system, such as string motion, saddle pressure, bridge vibration, or top-plate motion, while a microphone captures the result of the full coupled soundbox. Therefore, it is useful to briefly review the main components and their roles before discussing modeling approaches.
+
+### Strings
+
+Strings provide the initial excitation. They determine pitch, harmonic content, and dynamic envelope, but most of the audible sound depends on how their energy is transferred into the body.
+
+### Saddle
+
+The saddle acts as the interface between strings and bridge, converting string motion into force applied to the body. It is also a common location for piezo pickups, making it important for sensor-based modeling.
+
+### Bridge
+
+The bridge transfers string energy into the soundboard. Its mass and geometry influence how efficiently the top is driven and how energy spreads across the instrument.
+
+### Soundboard / Top Plate
+
+The soundboard is the primary vibrating surface that converts mechanical energy into sound. It must balance structural strength with flexibility to remain responsive.
+
+### Bracing System
+
+The bracing system is the internal structure beneath the soundboard. While it provides necessary reinforcement against string tension, it also plays a central role in shaping the guitar’s acoustic response.
+
+Bracing controls how stiffness is distributed across the top, influencing vibration patterns, resonance modes, and tonal balance. It affects key perceptual qualities such as bass response, clarity, sustain, projection, and dynamic range. Small changes in brace shape, placement, or mass can significantly alter the instrument’s voice.
+
+For example, scalloped bracing removes material from braces to increase flexibility, often resulting in greater responsiveness and stronger bass. More rigid bracing can produce a tighter, more controlled sound. Because bracing governs how energy travels through the soundboard, it is one of the most important factors in guitar voicing.
+
+In the context of acoustic modeling, bracing highlights why external shape alone is insufficient to describe a guitar’s sound. Internal structural differences can lead to large acoustic variations even between visually similar instruments.
+
+### Back and Sides
+
+The back and sides form the body enclosure. The sides define the shape and volume of the cavity, while the back can either reflect or actively participate in vibration, contributing to the overall resonance.
+
+### Soundhole and Air Cavity
+
+The soundhole and internal air cavity form a resonant system that contributes to low-frequency response and projection. They interact with the vibrating plates rather than acting as an isolated sound source.
+
+### Tonewoods and Material Response
+
+Different woods influence stiffness, density, and damping, which affect how the instrument vibrates. However, material alone does not determine tone; its effect depends on how it is used within the overall structure.
+
+### Neck and Player Coupling
+
+The neck contributes mass and stiffness and affects string tension through scale length. The player’s interaction with the instrument also influences excitation, making performance technique part of the acoustic system.
+
+### Coupled Vibration Behavior
+
+The most important point is that these components do not act independently. The string excites the saddle, which drives the bridge; the bridge drives the soundboard; the soundboard interacts with the bracing; the top and back couple through the air cavity; and the entire structure radiates sound.
+
+Because of this coupling, a change in one component can affect the entire system. This is why acoustic guitar sound is difficult to capture with pickups and challenging to model computationally. A pickup observes only a partial signal, while a microphone captures the integrated acoustic result. Vex Rendering aims to learn this relationship between local measurements and global sound.
+
+### Bracing Design Diversity
+
+The following bracing examples illustrate how different internal architectures can shape the response of similar steel-string acoustic guitars.
+
+| Bracing design | Diagram | Structural idea | Expected acoustic tendency | Relevance to Vex Rendering |
+|---|---|---|---|---|
+| **Pre-war D-28 / dreadnought-style X-bracing** | ![Pre-war D-28 style X-bracing](media_library/diagram/bracings/x-bracing.png) | Large X-brace structure under the soundboard, often associated with dreadnought-style guitars. In pre-war-inspired designs, the X-brace is commonly discussed together with scalloping and forward-shifted placement. | Strong projection, bass support, broad dynamic range, and smooth six-string blending. The large lower bout and X-brace structure help create the powerful dreadnought voice. | Useful as the large-body baseline for studying blended chordal response, strong low-frequency radiation, and complex string-to-body coupling. |
+| **OM-28-style X-bracing** | ![OM-28 style bracing](media_library/diagram/bracings/om28-bracing.png) | X-bracing adapted to a smaller OM body, with the structural layout scaled to a mid-sized soundbox. | Balanced bass, midrange, and treble; strong note separation; quicker response than a large dreadnought; good dynamic sensitivity for fingerstyle. | Useful for studying string-level articulation, note separation, and the model’s ability to preserve balanced mid-sized guitar identity. |
+| **Contemporary mesh-like / Somogyi-derived bracing** | ![Mesh-like bracing](media_library/diagram/bracings/mesh-bracing.png) | A distributed brace network that divides the lower bout and soundboard into many smaller interacting regions rather than relying only on a few dominant braces. | Potentially greater control over local stiffness, modal distribution, response speed, and separation between structural support and acoustic freedom. | Useful for future work on white-box acoustic modeling, because distributed bracing suggests a more spatially structured latent representation of top-plate vibration. |
+
+These designs show why the acoustic guitar should be treated as a complex physical system rather than a simple resonant box. The bracing pattern determines how energy flows through the soundboard and how the instrument balances responsiveness and structural stability. In a machine learning context, this implies that a model must capture not only observable signals but also the hidden structural factors that shape acoustic behavior.
+
 
 ## References
 - Ervin Somogyi, *The Responsive Guitar*. Luthiers Press, 2010.
