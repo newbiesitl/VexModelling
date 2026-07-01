@@ -130,6 +130,83 @@ The following bracing examples illustrate how different internal architectures c
 
 These designs show why the acoustic guitar should be treated as a complex physical system rather than a simple resonant box. The bracing pattern determines how energy flows through the soundboard and how the instrument balances responsiveness and structural stability. In a machine learning context, this implies that a model must capture not only observable signals but also the hidden structural factors that shape acoustic behavior.
 
+## 2.3 Acoustic Guitar Pickup Systems
+
+Acoustic guitar pickups are designed to convert some aspect of the instrument’s physical behavior into an electrical signal. However, no pickup captures the full acoustic guitar sound in the same way as a microphone. Each pickup observes only a partial projection of the instrument: string motion, saddle pressure, bridge vibration, soundboard vibration, or internal air movement. This makes pickup design central to the Vex Rendering problem, because the model must learn how an incomplete local signal relates to the fuller microphone-like acoustic field.
+
+### Soundhole Magnetic Pickups
+
+A soundhole magnetic pickup senses the motion of steel strings through changes in a magnetic field. It is structurally closer to an electric guitar pickup than to a microphone. Because it primarily observes string motion, it can produce a strong, stable, and feedback-resistant signal, making it useful for live performance.
+
+However, a magnetic soundhole pickup does not directly measure the full body response of the acoustic guitar. It captures the vibrating strings, but much less of the soundboard, back, sides, air cavity, and spatial radiation. This is why magnetic soundhole pickups can sound musical and expressive while still feeling less “acoustic” or less microphone-like than the instrument itself.
+
+In practical performance, this limitation can also become part of the tone. For example, a Sunrise-style magnetic pickup through a suitable preamp (eg. M-Factory PM200) can produce a recognizable and highly musical amplified acoustic voice. But this sound should be understood as an electro-acoustic rendering of the guitar, not as a transparent copy of the microphone sound.
+
+### Piezo and Contact Transducers
+
+Piezo pickups and contact transducers work under the same broad principle: they convert mechanical vibration, pressure, or movement into an electrical signal. In acoustic guitars, this usually means sensing energy from the saddle, bridge, bridge plate, or soundboard.
+
+An **undersaddle piezo** is placed beneath the saddle and is strongly coupled to string pressure and bridge excitation. It often captures fast attack, clarity, and direct mechanical detail. A **contact transducer** or **bridge-plate transducer** is attached to a vibrating part of the guitar body, such as the bridge plate or soundboard, and therefore captures more body motion than a pure undersaddle signal.
+
+Although these pickups share a similar vibration-to-electricity mechanism, their ***placement*** changes the observation. An undersaddle piezo mostly observes the string-to-bridge transfer point, while a contact transducer observes a local region of the vibrating body. Both are still partial measurements: they may capture more acoustic structure than a magnetic pickup, but they usually lack the spatial radiation, air-cavity behavior, and room interaction of a microphone.
+
+### Internal Microphones
+
+Internal microphones are mounted inside the guitar body. They can capture more air movement and body resonance than magnetic or piezo pickups, making them more microphone-like in some respects. However, they are also more sensitive to feedback, stage volume, handling noise, and placement. Since they are inside the body, they also do not capture the same external radiated field as a microphone placed in front of the guitar.
+
+###
+
+## 2.4 Acoustic Guitar Preamps and Signal Conditioning
+
+A preamp is an essential part of most acoustic-electric guitar systems. The signal produced by many pickups is too weak, too high-impedance, or too poorly conditioned to be sent directly to speakers, mixers, or recording interfaces. A preamp amplifies and stabilizes this signal so it can be used by downstream equipment. In a live setup, the preamp typically feeds a power amplifier, PA system, acoustic amplifier, or audio interface. The preamp itself does not usually drive the speaker directly; instead, it prepares the signal for the next stage of amplification or recording.
+
+### Why Preamps Are Needed
+
+The first role of a preamp is **gain**. Pickup signals are often much weaker than line-level signals, so they need amplification before they can be recorded or sent to a live sound system.
+
+The second role is **impedance matching**. This is especially important for piezo pickups, which often require a high-impedance input. If the impedance relationship is poor, the pickup may lose low end, become harsh, or sound unnaturally thin. A good preamp buffers the pickup and helps preserve a fuller frequency response.
+
+The third role is **signal conditioning**. Many acoustic preamps include EQ, filters, phase controls, notch filters, compression, saturation, or anti-feedback tools. These features do not merely make the signal louder; they reshape the final tone.
+
+### Preamp as a Tonal Renderer
+
+In acoustic guitar performance, the preamp often acts as a tonal renderer. It translates the raw pickup signal into a more usable musical sound. Different preamps can emphasize warmth, clarity, transient attack, body resonance, saturation, or smoothness. Tube-based, transistor-based, transformer-based, and digital preamps may all produce different acoustic impressions even when the same guitar and pickup are used.
+
+This means the amplified guitar sound is not determined by the guitar alone. It is shaped by the full signal chain:
+
+guitar → pickup → preamp → effects / mixer / amplifier → speaker or recording
+
+From the perspective of Vex Rendering, this signal chain is important because it shows that acoustic guitar tone is already a kind of engineered rendering process.
+
+### Blending, EQ, Phase, and Gain Staging
+
+Many acoustic players use more than one signal path. For example, a player may use a magnetic soundhole pickup for warmth and stability, while also using a piezo pickup for attack and acoustic detail. These signals may be amplified separately, blended through a preamp, or processed through different EQ and effects chains.
+
+Blending introduces additional complexity. The two signals may have different frequency responses, transient behavior, phase relationships, and noise characteristics. Small changes in gain, EQ, or phase can produce large changes in the final sound. This is one reason why acoustic guitar amplification is difficult to standardize: the same guitar may sound very different through different pickup-preamp combinations.
+
+### Passive and Active Pickups
+
+With the role of preamps established, acoustic pickup systems can now be more clearly understood in terms of whether they rely on external signal conditioning or include it internally.
+
+Acoustic pickups can be grouped into **passive** and **active** systems.
+
+A **passive pickup** does not require a battery or onboard powered circuit. It produces an electrical signal directly from the pickup element and therefore depends heavily on the external preamp for gain, impedance matching, and tonal shaping. Passive systems are simple and often preserve a raw, direct signal, but their output can be weak and highly sensitive to cable length and input impedance. Without proper buffering from a suitable preamp, a passive pickup signal—such as from a piezo or a passive magnetic soundhole pickup—may sound thin, harsh, or unbalanced.
+
+An **active pickup system** includes powered electronics, usually an onboard or inline preamp. In this case, many of the functions described earlier—gain, impedance buffering, and signal conditioning—are already partially handled inside the guitar or pickup unit itself. The active circuit can boost the signal, stabilize impedance, reduce noise sensitivity, and provide EQ or blending controls before the signal reaches any external equipment. Active systems are often easier to connect directly to mixers, audio interfaces, or stage systems. However, they also introduce another layer of coloration and design choice, since the signal has already been shaped before it enters the rest of the signal chain.
+
+This distinction matters for acoustic modeling. A passive pickup provides a more raw sensor signal that relies on downstream processing, while an active system provides a more conditioned but less neutral signal. In either case, the pickup output is not the complete acoustic sound of the guitar. It is a sensor-specific representation of the instrument’s hidden acoustic state, shaped either before or after the preamp stage.
+
+### Why Different Pickup–Preamp Combinations Produce Different Acoustic Impressions
+
+Different pickup-preamp combinations produce different acoustic impressions because each stage emphasizes a different part of the instrument.
+
+A magnetic soundhole pickup paired with a warm external preamp may produce a thick, stable, and musical tone, but with less body air and spatial detail. A piezo pickup paired with a high-impedance preamp may produce clearer attack and more acoustic detail, but may still lack microphone-like depth. A contact transducer may capture more body movement, but may also emphasize local resonances or handling noise. An active pickup system may provide a polished and reliable signal, but it may already contain onboard coloration before any external processing.
+
+Therefore, the pickup-preamp chain should be understood as a manually designed acoustic rendering system. It takes a partial observation of the guitar and transforms it into a performable tone. Vex Rendering extends this idea by asking whether a neural model can learn a more flexible and data-driven rendering function from pickup observations to microphone-like acoustic sound.
+
+###
+
+
 ## References
 - Ervin Somogyi, *The Responsive Guitar*. Luthiers Press, 2010.
 - C. F. Martin & Co., “Guide to Acoustic Guitar Body Sizes & Shapes.”
