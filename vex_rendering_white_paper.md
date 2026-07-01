@@ -29,7 +29,7 @@ Motivated by these limitations, the paper then proposes a DDSP-inspired latent-v
 
 The purpose of this paper is therefore exploratory. It documents the first stage of Vex Rendering as a research probe into neural acoustic guitar modeling: beginning with a HiFi-GAN baseline, analyzing the limitations of direct non-latent rendering, and outlining a DDSP-style latent-variable path toward more interpretable acoustic modeling. More broadly, this work asks whether the complex acoustic behavior of an instrument can be learned from data, represented through structured latent variables, and eventually manipulated to produce realistic, personalized, or even novel acoustic timbres.
 
-# Acoustic Guitar System Background
+# 2. Acoustic Guitar System Background
 ## 2.1 Acoustic Guitar Body Shapes
 
 Acoustic guitars appear in many body shapes, and new shapes continue to be invented by modern luthiers and manufacturers. Body-shape terminology is not fully standardized across the guitar industry; even familiar names such as dreadnought, OM, 000, L-00, jumbo, and parlor often describe families of related designs rather than exact geometric specifications. For this reason, this paper focuses on several representative classic shapes rather than attempting to cover every possible design. These classic shapes are useful because they occupy different regions of the acoustic design space and are commonly associated with different tonal families, playing styles, ergonomic choices, and sensor-response behaviors.
