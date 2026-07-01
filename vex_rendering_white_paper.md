@@ -117,18 +117,18 @@ The most important point is that these components do not act independently. The 
 
 Because of this coupling, a change in one component can affect the entire system. This is why acoustic guitar sound is difficult to capture with pickups and challenging to model computationally. A pickup observes only a partial signal, while a microphone captures the integrated acoustic result. Vex Rendering aims to learn this relationship between local measurements and global sound.
 
+
 ### Bracing Design Diversity
 
 The following bracing examples illustrate how different internal architectures can shape the response of similar steel-string acoustic guitars.
 
-| Bracing design | Diagram | Structural idea | Expected acoustic tendency | Relevance to Vex Rendering |
-|---|---|---|---|---|
-| **Pre-war D-28 / dreadnought-style X-bracing** | ![Pre-war D-28 style X-bracing](media_library/diagram/bracings/x-bracing.png) | Large X-brace structure under the soundboard, often associated with dreadnought-style guitars. In pre-war-inspired designs, the X-brace is commonly discussed together with scalloping and forward-shifted placement. | Strong projection, bass support, broad dynamic range, and smooth six-string blending. The large lower bout and X-brace structure help create the powerful dreadnought voice. | Useful as the large-body baseline for studying blended chordal response, strong low-frequency radiation, and complex string-to-body coupling. |
-| **OM-28-style X-bracing** | ![OM-28 style bracing](media_library/diagram/bracings/om28-bracing.png) | X-bracing adapted to a smaller OM body, with the structural layout scaled to a mid-sized soundbox. | Balanced bass, midrange, and treble; strong note separation; quicker response than a large dreadnought; good dynamic sensitivity for fingerstyle. | Useful for studying string-level articulation, note separation, and the model’s ability to preserve balanced mid-sized guitar identity. |
-| **Contemporary mesh-like / Somogyi-derived bracing** | ![Mesh-like bracing](media_library/diagram/bracings/mesh-bracing.png) | A distributed brace network that divides the lower bout and soundboard into many smaller interacting regions rather than relying only on a few dominant braces. | Potentially greater control over local stiffness, modal distribution, response speed, and separation between structural support and acoustic freedom. | Useful for future work on white-box acoustic modeling, because distributed bracing suggests a more spatially structured latent representation of top-plate vibration. |
+| Bracing design | Diagram | Structural idea |
+|---|---|---|
+| **Pre-war D-28 / dreadnought-style X-bracing** | ![Pre-war D-28 style X-bracing](media_library/diagram/bracings/x-bracing.png) | Large X-brace structure under the soundboard, often associated with dreadnought-style guitars. In pre-war-inspired designs, the X-brace is commonly discussed together with scalloping and forward-shifted placement. |
+| **OM-28-style X-bracing** | ![OM-28 style bracing](media_library/diagram/bracings/om28-bracing.png) | X-bracing adapted to a smaller OM body, with the structural layout scaled to a mid-sized soundbox. |
+| **Contemporary mesh-like / Somogyi-derived bracing** | ![Mesh-like bracing](media_library/diagram/bracings/mesh-bracing.png) | A distributed brace network that divides the lower bout and soundboard into many smaller interacting regions rather than relying only on a few dominant braces. |
 
 These designs show why the acoustic guitar should be treated as a complex physical system rather than a simple resonant box. The bracing pattern determines how energy flows through the soundboard and how the instrument balances responsiveness and structural stability. In a machine learning context, this implies that a model must capture not only observable signals but also the hidden structural factors that shape acoustic behavior.
-
 
 ## References
 - Ervin Somogyi, *The Responsive Guitar*. Luthiers Press, 2010.
